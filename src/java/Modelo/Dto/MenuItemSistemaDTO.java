@@ -1,10 +1,19 @@
 package Modelo.Dto;
 
 public class MenuItemSistemaDTO {
+
     private Integer id;
-    private String  descrip;
-    private String  comentario;
+    private String descrip;
+    private String comentario;
     private MenuSistemaDTO menuSistema;
+
+    public MenuItemSistemaDTO(Integer id) {
+        this.id = id;
+    }
+
+    public MenuItemSistemaDTO() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
     public Integer getId() {
         return id;
@@ -37,7 +46,5 @@ public class MenuItemSistemaDTO {
     public void setMenuSistema(MenuSistemaDTO menuSistema) {
         this.menuSistema = menuSistema;
     }
-    
-    
-    
+
 }
