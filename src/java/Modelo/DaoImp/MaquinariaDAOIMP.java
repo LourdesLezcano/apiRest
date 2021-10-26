@@ -1,8 +1,8 @@
- package Modelo.DaoImp;
+package Modelo.DaoImp;
 
 import Base.Conexion;
-import Modelo.Dao.MenuSistemaDAO;
-import Modelo.Dto.MenuSistemaDTO;
+import Modelo.Dao.MaquinariaDAO;
+import Modelo.Dto.MaquinariaDTO;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,22 +11,22 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class MenuSistemaDAOIMP implements MenuSistemaDAO {
+public class MaquinariaDAOIMP implements MaquinariaDAO {
 
     private String sql;
     private Conexion conexion;
     private PreparedStatement ps;
     private ResultSet rs;
 
-    public MenuSistemaDAOIMP() {
+    public MaquinariaDAOIMP() {
         conexion = new Conexion();
     }
 
     @Override
-    public boolean agregarRegistro(MenuSistemaDTO dto) {
+    public boolean agregarRegistro(MaquinariaDTO dto) {
         try {
             conexion.Transaccion(Conexion.TR.INICIAR);
-            sql = "INSERT INTO public.menu_sistema( descrip, comentario) VALUES ( ?, ?);";
+            sql = "INSERT INTO public.maquinaria( descrip, comentario) VALUES ( ?, ?);";
             ps = conexion.obtenerConexion().prepareStatement(sql);
             ps.setString(1, dto.getDescrip());
             ps.setString(2, dto.getComentario());
@@ -52,10 +52,10 @@ public class MenuSistemaDAOIMP implements MenuSistemaDAO {
     }
 
     @Override
-    public boolean modificarRegistro(MenuSistemaDTO dto) {
+    public boolean modificarRegistro(MaquinariaDTO dto) {
         try {
             conexion.Transaccion(Conexion.TR.INICIAR);
-            sql = "UPDATE public.menu_sistema SET  descrip=?, comentario=? WHERE id=?;";
+            sql = "UPDATE public.maquinaria SET  descrip=?, comentario=? WHERE id=?;";
             ps = conexion.obtenerConexion().prepareStatement(sql);
             ps.setString(1, dto.getDescrip());
             ps.setString(2, dto.getComentario());
@@ -82,10 +82,10 @@ public class MenuSistemaDAOIMP implements MenuSistemaDAO {
     }
 
     @Override
-    public boolean eliminarRegistro(MenuSistemaDTO dto) {
+    public boolean eliminarRegistro(MaquinariaDTO dto) {
         try {
             conexion.Transaccion(Conexion.TR.INICIAR);
-            sql = "DELETE FROM public.menu_sistema WHERE id=?;";
+            sql = "DELETE FROM public.maquinaria WHERE id=?;";
             ps = conexion.obtenerConexion().prepareStatement(sql);
             ps.setInt(1, dto.getId());
             if (ps.executeUpdate() > 0) {
@@ -110,15 +110,15 @@ public class MenuSistemaDAOIMP implements MenuSistemaDAO {
     }
 
     @Override
-    public MenuSistemaDTO recuperarRegistro(Integer id) {
+    public MaquinariaDTO recuperarRegistro(Integer id) {
         try {
-            MenuSistemaDTO dto = null;
-            sql = "SELECT id, descrip, comentario FROM public.menu_sistema WHERE id = ?";
+            MaquinariaDTO dto = null;
+            sql = "SELECT id, descrip, comentario FROM public.maquinaria WHERE id = ?";
             ps = conexion.obtenerConexion().prepareStatement(sql);
             ps.setInt(1, id);
             rs = ps.executeQuery();
             if (rs.next()) {
-                dto = new MenuSistemaDTO();
+                dto = new MaquinariaDTO();
                 dto.setId(rs.getInt("id"));
                 dto.setDescrip(rs.getString("descrip"));
                 dto.setComentario(rs.getString("comentario"));
@@ -139,16 +139,16 @@ public class MenuSistemaDAOIMP implements MenuSistemaDAO {
     }
 
     @Override
-    public List<MenuSistemaDTO> recuperarRegistros() {
+    public List<MaquinariaDTO> recuperarRegistros() {
         try {
-            List<MenuSistemaDTO> lista= null;
-            MenuSistemaDTO dto = null;
-            sql = "SELECT id, descrip, comentario FROM public.menu_sistema ";
+            List<MaquinariaDTO> lista = null;
+            MaquinariaDTO dto = null;
+            sql = "SELECT id, descrip, comentario FROM public.maquinaria ";
             ps = conexion.obtenerConexion().prepareStatement(sql);
             rs = ps.executeQuery();
             lista = new ArrayList<>();
             while (rs.next()) {
-                dto = new MenuSistemaDTO();
+                dto = new MaquinariaDTO();
                 dto.setId(rs.getInt("id"));
                 dto.setDescrip(rs.getString("descrip"));
                 dto.setComentario(rs.getString("comentario"));
