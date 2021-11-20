@@ -6,11 +6,24 @@ public class MenuSistemaDTO {
     private Integer id;
     private String  descrip;
     private String  comentario;
+    private String  token;
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
 
     public MenuSistemaDTO() {
         //des
     }
 
+    public MenuSistemaDTO(Integer id) {
+        this.id = id;
+    }
+    
     public MenuSistemaDTO(Integer id, String descrip) {
         this.id = id;
         this.descrip = descrip;

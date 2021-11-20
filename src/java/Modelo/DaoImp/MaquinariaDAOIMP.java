@@ -26,7 +26,7 @@ public class MaquinariaDAOIMP implements MaquinariaDAO {
     public boolean agregarRegistro(MaquinariaDTO dto) {
         try {
             conexion.Transaccion(Conexion.TR.INICIAR);
-            sql = "INSERT INTO public.maquinaria( descrip, comentario) VALUES ( ?, ?);";
+            sql = "INSERT INTO public.maquinaria( descripcion, comentario) VALUES ( ?, ?);";
             ps = conexion.obtenerConexion().prepareStatement(sql);
             ps.setString(1, dto.getDescrip());
             ps.setString(2, dto.getComentario());
@@ -55,7 +55,7 @@ public class MaquinariaDAOIMP implements MaquinariaDAO {
     public boolean modificarRegistro(MaquinariaDTO dto) {
         try {
             conexion.Transaccion(Conexion.TR.INICIAR);
-            sql = "UPDATE public.maquinaria SET  descrip=?, comentario=? WHERE id=?;";
+            sql = "UPDATE public.maquinaria SET  descripcion=?, comentario=? WHERE id_maquinaria=?;";
             ps = conexion.obtenerConexion().prepareStatement(sql);
             ps.setString(1, dto.getDescrip());
             ps.setString(2, dto.getComentario());
@@ -85,7 +85,7 @@ public class MaquinariaDAOIMP implements MaquinariaDAO {
     public boolean eliminarRegistro(MaquinariaDTO dto) {
         try {
             conexion.Transaccion(Conexion.TR.INICIAR);
-            sql = "DELETE FROM public.maquinaria WHERE id=?;";
+            sql = "DELETE FROM public.maquinaria WHERE id_maquinaria=?;";
             ps = conexion.obtenerConexion().prepareStatement(sql);
             ps.setInt(1, dto.getId());
             if (ps.executeUpdate() > 0) {
@@ -113,14 +113,14 @@ public class MaquinariaDAOIMP implements MaquinariaDAO {
     public MaquinariaDTO recuperarRegistro(Integer id) {
         try {
             MaquinariaDTO dto = null;
-            sql = "SELECT id, descrip, comentario FROM public.maquinaria WHERE id = ?";
+            sql = "SELECT id_maquinaria, descripcion, comentario FROM public.maquinaria WHERE id_maquinaria = ?";
             ps = conexion.obtenerConexion().prepareStatement(sql);
             ps.setInt(1, id);
             rs = ps.executeQuery();
             if (rs.next()) {
                 dto = new MaquinariaDTO();
-                dto.setId(rs.getInt("id"));
-                dto.setDescrip(rs.getString("descrip"));
+                dto.setId(rs.getInt("id_maquinaria"));
+                dto.setDescrip(rs.getString("descripcion"));
                 dto.setComentario(rs.getString("comentario"));
             }
             return dto;
@@ -143,14 +143,14 @@ public class MaquinariaDAOIMP implements MaquinariaDAO {
         try {
             List<MaquinariaDTO> lista = null;
             MaquinariaDTO dto = null;
-            sql = "SELECT id, descrip, comentario FROM public.maquinaria ";
+            sql = "SELECT id_maquinaria, descripcion, comentario FROM public.maquinaria ";
             ps = conexion.obtenerConexion().prepareStatement(sql);
             rs = ps.executeQuery();
             lista = new ArrayList<>();
             while (rs.next()) {
                 dto = new MaquinariaDTO();
-                dto.setId(rs.getInt("id"));
-                dto.setDescrip(rs.getString("descrip"));
+                dto.setId(rs.getInt("id_maquinaria"));
+                dto.setDescrip(rs.getString("descripcion"));
                 dto.setComentario(rs.getString("comentario"));
                 lista.add(dto);
             }
