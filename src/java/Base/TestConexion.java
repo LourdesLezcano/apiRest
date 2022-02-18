@@ -14,7 +14,7 @@ public class TestConexion {
         dto = new MenuSistemaDTO();
         dto.setId(1233);
         dto.setDescrip("dasdas");
-        dto.setComentario("adsasdsadas");
+        dto.setComentario("adsasdsadas"); 
     }
 
 

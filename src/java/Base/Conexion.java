@@ -1,4 +1,4 @@
-  package Base;
+package Base;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -19,7 +19,7 @@ public class Conexion {
             establecerConexion(TipoMotor.POSTGRESQL);
         }
     }
-     
+    
     public Conexion(TipoMotor tipoMotorBD) {
         if (conexion == null) {
             establecerConexion(tipoMotorBD);

@@ -3,17 +3,6 @@ package Modelo.Dto;
 import java.sql.Date;
 
 public class PersonaDTO {
-    /*
-          id integer NOT NULL DEFAULT nextval('personas_id_seq'::regclass),
-  nro_documento character varying,
-  nombres character varying,
-  apellidos character varying,
-  fecha_nac date,
-  direccion character varying,
-  correo character varying,
-  nro_telefono integer,
-    */
-    
     
     private Integer id;
     private String nroDocumento;

@@ -1,4 +1,4 @@
-package Modelo.DaoImp;
+ package Modelo.DaoImp;
 
 import Base.Conexion;
 import Modelo.Dao.MenuSistemaDAO;
